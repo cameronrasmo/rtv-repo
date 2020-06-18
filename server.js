@@ -11,6 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(express.static(path.join(__dirname, "client", "build")));
 mongoose.connect(
     process.env.MONGODB_URI || "mongodb://localhost:27017/rtv-db",
     {
@@ -23,8 +24,6 @@ mongoose.connect(
         console.log("Connected to MongoDB");
     }
 );
-app.use(express.static(path.join(__dirname, "client", "build")));
-app.use(express.static("./uploads"));
 app.use("/auth", require("./routes/authRouter.js"));
 app.use("/api", expressJwt({ secret: secret }));
 app.use("/api/users", require("./routes/authRouter"));
