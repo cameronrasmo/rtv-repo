@@ -677,7 +677,7 @@ const Post = (props) => {
                         ) : null}
                         <CommentsContainer onClick={commentPanel}>
                             <img type='image/svg+xml' src={comment} alt='' />
-                            <p>comments</p>
+                            <p>comments ({comments.comments.length})</p>
                         </CommentsContainer>
                         <ArrowsContainer>
                             <Vote
