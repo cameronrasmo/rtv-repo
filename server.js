@@ -4,13 +4,15 @@ const mongoose = require("mongoose");
 const expressJwt = require("express-jwt");
 require("dotenv").config();
 const path = require("path");
+const port = process.env.PORT || 5000;
+const secret = process.env.SECRET || "yes haha funny joke";
 
 const app = express();
 
 app.use(express.json());
 app.use(morgan("dev"));
 mongoose.connect(
-    "mongodb://localhost:27017/rtv-db",
+    process.env.MONGODB_URI || "mongodb://localhost:27017/rtv-db",
     {
         useNewUrlParser: true,
         useFindAndModify: false,
@@ -24,7 +26,7 @@ mongoose.connect(
 app.use(express.static(path.join(__dirname, "client", "build")));
 app.use(express.static("./uploads"));
 app.use("/auth", require("./routes/authRouter.js"));
-app.use("/api", expressJwt({ secret: process.env.SECRET }));
+app.use("/api", expressJwt({ secret: secret }));
 app.use("/api/users", require("./routes/authRouter"));
 app.use("/api/posts", require("./routes/postRouter"));
 app.use((err, req, res, next) => {
@@ -38,6 +40,6 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
-app.listen(9000, () => {
-    console.log("Connected to port 9000");
+app.listen(port, () => {
+    console.log(`Connected to port ${port}`);
 });
