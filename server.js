@@ -25,7 +25,7 @@ mongoose.connect(
     }
 );
 app.use("/auth", require("./routes/authRouter.js"));
-app.use("/api", expressJwt({ secret: secret }));
+app.use("/api", expressJwt({ secret: secret, algorithms: ['RS256'] }));
 app.use("/api/users", require("./routes/authRouter"));
 app.use("/api/posts", require("./routes/postRouter"));
 app.use((err, req, res, next) => {
