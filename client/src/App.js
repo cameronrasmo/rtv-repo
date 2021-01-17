@@ -135,10 +135,6 @@ const App = () => {
         setToggleState(prev => !prev);
     };
 
-    useEffect(() => {
-        console.log(token, user);
-    }, []);
-
     return (
         <div>
             {token ? (

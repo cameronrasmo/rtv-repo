@@ -110,10 +110,6 @@ postRouter.route("/:postID/comment").get((req, res, next) => {
 // Post comment
 postRouter.route("/:postID/comment").post((req, res, next) => {
     const newComment = new Comment(req.body);
-    // User.findOne({ _id: req.user._id }, (err, found) => {
-    //     return (newComment.authorUN = found.username);
-    // });
-    // console.log(newComment.authorUN);
 
     newComment.authorID = req.user._id;
     newComment.post = req.params.postID;
