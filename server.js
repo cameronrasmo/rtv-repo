@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "client", "build")));
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost:27017/rtv-db",
+    process.env.MONGODB_URI || "mongodb://localhost:27017/rtvDB",
     {
         useNewUrlParser: true,
         useFindAndModify: false,
