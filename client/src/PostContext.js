@@ -80,10 +80,6 @@ const PostContextProvider = props => {
             .catch(err => console.log(err));
     };
 
-    useEffect(() => {
-        console.log(userAxios);
-    }, []);
-
     return (
         <PostContext.Provider
             value={{
