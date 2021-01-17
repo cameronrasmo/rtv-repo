@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Auth from "./components/Auth/Auth.js";
 import Posts from "./components/Posts/Posts.js";
 import styled from "styled-components";
@@ -132,8 +132,12 @@ const App = () => {
     const [toggleState, setToggleState] = React.useState(false);
 
     const toggle = () => {
-        setToggleState((prev) => !prev);
+        setToggleState(prev => !prev);
     };
+
+    useEffect(() => {
+        console.log(token, user);
+    }, []);
 
     return (
         <div>
